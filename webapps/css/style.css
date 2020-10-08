@@ -1,0 +1,164 @@
+@charset "utf-8";
+
+html{
+  font-size: 62.5%;
+}
+
+*{
+  margin:0;
+}
+
+body{
+  width:auto;
+  font-family:"メイリオ",Meiryo,"ヒラギノ角ゴ Pro W3", sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  background: #EFE7DA;
+  margin-right: auto;
+}
+
+img{
+  vertical-align: bottom;
+  border: none;
+  max-width: 100%;
+  height: auto;
+}
+
+h3{
+  color: #369;
+  padding: 5px;
+  text-align: left;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+a{
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
+table{
+  margin:auto;
+  border-collapse: collapse;
+  border: 1px solid #666;
+}
+
+table th,td,tr{
+  border: 1px solid #666;
+  padding: 5px;
+}
+
+/*　ヘッダー　*/
+
+.header{
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.header-contents{
+  display: flex;
+}
+
+.header-contents a:hover{
+  color:#ccc;
+}
+
+.header-list {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  padding-right: 10px;
+  margin: 0px;
+
+}
+
+.header-list li{
+  /*border: 1px solid #39C; */
+  background-color:#39C;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 10px;
+}
+
+/* メインコンテンツ　*/
+.main-contents{
+  background: #fff;
+  padding: 2.5em;
+  flex: 0 1 auto;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-contents a:hover{
+  color: #39C;
+}
+
+/*各種コンテンツ*/
+
+.search{
+  margin: auto;
+  padding: 1.5em;
+}
+
+.search input,select{
+  padding:0 18px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+  font-size: 14px;
+}
+
+.mainlist{
+  width: 760px;
+  margin: auto;
+  padding: 1em;
+}
+
+.sublist{
+  width: 760px;
+  margin: auto;
+  padding: 1em;
+}
+
+.back-button{
+  padding-top: 30px;
+  margin: auto;
+}
+
+/* フッター*/
+
+.footer{
+  width: 100%;
+  border-top:solid 1px #CCC;
+  background-color: #313944;
+  color: #FFF;
+  font-size:80%;
+  text-align:center;
+  padding:1.5em;
+  display: flex;
+  position: relative;
+  bottom: 0;
+}
+
+.footer a{
+  color: white;
+}
+
+.footer a:hover{
+  color: #39C;
+}
+
+
+.footer-content{
+  display: flex;
+  padding:0 2.5em;
+  margin:auto;
+}
+
+.footer-list{
+  list-style: none;
+}
