@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.*,tamework.*"%>
 
-<!DOCTYPE html>
+<!DOCtype html>
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
@@ -15,24 +15,32 @@
 
 	<%@include file ="include/header.jsp" %>
 
+
 	<div class ="main-contents">
 
+
+
 		<div class="form">
-			<h3>新規会員登録</h3>
-				<form action="signcheck.jsp" method="post">
-				<div class="form-section">
-					<table>
-						<tr><td>ユーザー名</td><td><input type="text" NAME="user_name" placeholder="5文字以上"></td></tr>
-						<tr><td>パスワード</td><td><input type="password" NAME="password"　placeholder="8文字以上"></td></tr>
-					</table>
-				</div>
-				<input type="submit" value ="ログイン">
-				</form>
+			<h3>すでに登録済みの方</h3>
+        <form action="confirm.jsp" method="post">
+        <div class="form-section">
+          <table>
+            <tr><td>ユーザー名</td><td><input type="text" NAME="user_name"></td></tr>
+            <tr><td>パスワード</td><td><input type="password" NAME="password"></td></tr>
+          </table>
+
+        </div>
+        <input type="submit" name="btn" value ="ログイン">
+        </form>
 		</div><!--main-->
+
+
+
 
 	</div><!--main-contents-->
 
 	<%@include file ="include/footer.html" %>
+
 
 </body>
 </html>

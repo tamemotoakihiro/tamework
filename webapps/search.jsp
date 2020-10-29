@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@ page import="java.util.*,ricoweb.*"%>
+<%@ page import="java.util.*,tamework.*"%>
 
 <%
 
@@ -9,10 +9,10 @@ String StrKeyword = request.getParameter("keyword");//
 String StrDatatype = request.getParameter("datatype");//
 
 
-RicoWebDao dao = new RicoWebDao();
-RicoWebDto dto = new RicoWebDto();
+TameWebDao dao = new TameWebDao();
+TameWebDto dto = new TameWebDto();
 
-List <RicoWebDto> list = dao.getRicoDataList(StrKeyword,StrDatatype);
+List <TameWebDto> list = dao.getTameDataList(StrKeyword,StrDatatype);
 
 dao.close();
 %>
@@ -23,49 +23,38 @@ dao.close();
 	<meta name="viewport" content="width=device,initial-scale=1">
 	<link rel="stylesheet" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
-	<title>Rico-Web | 検索結果</title>
+	<title>Tame-Web | 検索結果</title>
 </head>
 
 <body>
 
-	<div class ="header">
-		<div class ="header-contents">
-			<div class ="header-logo">
-				<a href="index.jsp"><img src="img/logo.svg" width="180"></a>
-			</div>
-			<ul class="header-list">
-				<li><a href="about.html">このサイトについて</a></li>
-				<li><a href="#">会員登録(工事中)</a></li>
-				<li><a href="#">ログイン(工事中)</a></li>
-			</ul>
-		</div><!--header-contents-->
-	</div><!--header-->
+	<%@include file ="include/header.jsp" %>
 
 
 	<div class ="main-contents">
 
 		<div class="search">
 			<form action="search.jsp" method="post">
-				<p class="input_text">どんな求人をお探しですか？</p>
+				<p class="input_text">どんな作品をお探しですか？</p>
 				<input type="search" name="keyword" placeholder="キーワードを入力"  style="height: 35px">
 				<select name="datatype"  style="height: 35px">
-					<option value="company_name">会社名</option>
-					<option value="address">住所</option>
-					<option value="station">最寄駅</option>
+					<option value="work_name">作品名</option>
+					<option value="address">場所</option>
+					<option value="station">最寄り</option>
 				</select>
 				<input type="submit" name="submit" value="search" style="height: 35px">
 				</form>
 		</div><!--search-->
 
-		<h3>会社情報の検索結果一覧:</h3>
+		<h3>作品情報の検索結果一覧:</h3>
 		<div class="search_result">
-      <% for(RicoWebDto company : list){ %>
+      <% for(TameWebDto work : list){ %>
 				<div class="search_contents">
-					<div class="company_name">
-            <a href="company.jsp?id=<%=company.getId()%>">
-              <p><%=company.getCompany_name()%></p>
+					<div class="work_name">
+            <a href="work.jsp?id=<%=work.getId()%>">
+              <p><%=work.getWork_name()%></p>
             </a>
-          </div><!--company_name-->
+          </div><!--work_name-->
 				  <div class="search_relation"><%=StrKeyword%>,<%=StrDatatype%></div>
 				</div><!--search_contents-->
 			<% } %>
@@ -74,19 +63,7 @@ dao.close();
 	</div><!--contents-->
 
 
-	<div class ="footer">
-		<div class="footer-content">
-			<h3>関連リンク</h3>
-		</div>
-			<ul class="footer-list">
-				<li><a href="https://event.rico-web.net/">Rico-Web</a></li>
-				<li><a href="http://www.rico-web.net/">キョウリツネット</a></li>
-				<li><a href="http://terahouse-ica.ac.jp/">テラハウスICA</a></li>
-			</ul>
-			<div class="footer-content">
-			<p>このサイトは<a href="tame-intro.com">Java+Webプログラミング実践科の学生</a>が作成したものです。</p>
-		</div>
-	</div><!--footer-->
+<%@include file ="include/footer.html" %>
 
 </body>
 </html>

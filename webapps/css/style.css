@@ -13,7 +13,7 @@ body{
   font-family:"メイリオ",Meiryo,"ヒラギノ角ゴ Pro W3", sans-serif;
   font-size: 1.6rem;
   line-height: 1.6;
-  background: #EFE7DA;
+  background: #FFF;
   margin-right: auto;
 }
 
@@ -55,7 +55,6 @@ table th,td,tr{
 .header{
   background: #fff;
   padding: 10px;
-  margin-bottom: 10px;
 }
 
 .header-contents{
@@ -95,6 +94,9 @@ table th,td,tr{
 
 .main-contents a:hover{
   color: #39C;
+}
+
+.main-image {
 }
 
 /*各種コンテンツ*/

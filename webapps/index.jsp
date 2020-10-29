@@ -1,11 +1,22 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@ page import="java.util.*,ricoweb.*"%>
+<%@ page import="java.util.*,tamework.*"%>
 <%
 
-RicoWebDao dao = new RicoWebDao();
-RicoWebDto dto = new RicoWebDto();
+String strUser="ゲスト";
 
-dto = dao.getRicoData();
+if(session != null){
+	strUser = (String)session.getAttribute("user_name");
+}
+
+if(strUser == null){
+	strUser = "ゲスト";
+}
+
+
+TameWebDao dao = new TameWebDao();
+TameWebDto dto = new TameWebDto();
+
+dto = dao.getTameData();
 
 dao.close();
 %>
@@ -13,61 +24,87 @@ dao.close();
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+
+	<script>
+
+	var assoc ={};
+
+	function showHint(str) {
+
+		assoc.keyword = str.value;
+		data = JSON.stringify(assoc);
+
+	  if (str.length == 0) {
+	    document.getElementById("txtHint").innerHTML = "";
+	    return;
+	  } else {
+	    var xmlhttp = new XMLHttpRequest();
+	    xmlhttp.onreadystatechange = function() {
+	      if (this.readyState == 4 && this.status == 200) {
+	        document.getElementById("txtHint").innerHTML = this.responseText;
+	      }
+	    };
+	    xmlhttp.open("GET", "../suggestion" , true);
+			xmlhttp.setRequestHeader("Content-Type","application/json");
+	    xmlhttp.send(JSON.stringify(data));
+	  }
+	}
+
+	</script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device,initial-scale=1">
 	<link rel="stylesheet" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
-	<title>Rico-Web | トップページ</title>
+	<title>Tame-Web | トップページ</title>
 </head>
 
 <body>
 
-	<div class ="header">
-		<div class ="header-contents">
-			<div class ="header-logo">
-				<a href="index.jsp"><img src="img/logo.svg" width="180"></a>
-			</div>
-			<ul class="header-list">
-				<li><a href="about.html">このサイトについて</a></li>
-				<li><a href="#">会員登録(工事中)</a></li>
-				<li><a href="#">ログイン(工事中)</a></li>
-			</ul>
-		</div><!--header-contents-->
-	</div><!--header-->
+	<%@include file ="include/header.jsp" %>
 
 
 	<div class ="main-contents">
 
+		<div class="main-image">
+			<img src="img/main_image.jpg">
+		</div>
+
+		<div class="">
+			<p>このサイトは、ためがこれまで描いてきた作品をまとめたサイトです。</p>
+		</div>
+
 		<div class="search">
 			<form action="search.jsp" method="post">
-				<p class="input_text">どんな求人をお探しですか？</p>
-				<input type="search" name="keyword" placeholder="キーワードを入力"  style="height: 35px">
+				<p>おいでませ。<%=strUser%>さん。作品検索はこちらから</p>
+				<input type="search" name="keyword" id="input_text" placeholder="キーワードを入力" oninput="showHint(this.value)" style="height: 35px">
         <select name="datatype"  style="height: 35px">
-          <option value="company_name">会社名</option>
-          <option value="address">住所</option>
-          <option value="station">最寄駅</option>
+          <option value="work_name">作品名</option>
+          <option value="address">場所</option>
+          <option value="station">最寄り</option>
         </select>
 				<input type="submit" name="submit" value="search" style="height: 35px">
 				</form>
+			<p>もしかしてこれかな？<span id="txtHint"></span></p>
 		</div><!--search-->
 
 
 		<div class="mainlist">
-			<h3>新着会社リスト</h3>
+			<h3>新しくこんなものを描いたよ。</h3>
 		      <ul>
 		        <li>
-		          <p>会社名：<%=dto.getCompany_name()%></p>
-							<p>一言：<%=dto.getAccessinf()%></p>
+		          <p>作品名：<%=dto.getWork_name()%></p>
+							<p>解説：<%=dto.getMessage()%></p>
 		        </li>
 		      </ul>
 		</div><!--main-->
 
     <div class="sublist">
-			<h3>サイトからのお知らせ</h3>
+			<h3>お知らせ</h3>
 	        <ul>
 	          <li>
-							<div>2020年10月7日</div>
-	            <p>「このサイトについて」を更新しました。</p>
+							<div>2020年10月29日</div>
+	            <p>「このサイトについて」をまとめてみたよ。</p>
 	          </li>
 	        </ul>
 
@@ -76,19 +113,7 @@ dao.close();
 
 	</div><!--main-contents-->
 
-	<div class ="footer">
-		<div class="footer-content">
-			<h3>関連リンク</h3>
-		</div>
-			<ul class="footer-list">
-				<li><a href="https://event.rico-web.net/">Rico-Web</a></li>
-				<li><a href="http://www.rico-web.net/">キョウリツネット</a></li>
-				<li><a href="http://terahouse-ica.ac.jp/">テラハウスICA</a></li>
-			</ul>
-			<div class="footer-content">
-			<p>このサイトは<a href="tame-intro.com">Java+Webプログラミング実践科の学生</a>が作成したものです。</p>
-		</div>
-	</div><!--footer-->
+	<%@include file ="include/footer.html" %>
 
 </body>
 </html>
