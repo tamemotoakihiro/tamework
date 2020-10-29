@@ -24,7 +24,6 @@ SecretKeySpecはSecretKeyをimplementしているので、インスタンスが�
 
 今後の宿題
 ハッシュ化の続き
-NikiさんにHerokuへのアップの仕方聞いてみる
 その他のプロジェクトも作ってみる
 
 
